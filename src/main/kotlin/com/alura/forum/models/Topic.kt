@@ -1,6 +1,5 @@
 package com.alura.forum.models
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties
 import java.time.LocalDateTime
 
 data class Topic (
