@@ -1,25 +1,31 @@
 package com.alura.forum.controllers
 
-import com.alura.forum.models.Course
-import com.alura.forum.models.Topic
-import com.alura.forum.models.User
+import com.alura.forum.dtos.TopicForm
+import com.alura.forum.dtos.TopicView
 import com.alura.forum.services.TopicsServices
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
 
 @RestController
 @RequestMapping("/topicos")
 class TopicController(private val service: TopicsServices) {
     @GetMapping
-    fun list(): List<Topic>{
+    fun list(): List<TopicView>{
         return service.list()
     }
 
     @GetMapping("/{id}")
-    fun searchID (@PathVariable id: Long): Topic{
+    fun searchID (@PathVariable id: Long): TopicView{
         return service.searchId(id)
+    }
+
+    @PostMapping
+    fun register (@RequestBody @Valid dto: TopicForm){
+        service.register(dto)
     }
 }
