@@ -23,7 +23,10 @@ class ExceptionHandler {
 
     @ExceptionHandler(Exception::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    fun handleSeverError(exception : Exception, request: HttpServletRequest): ErrorView {
+    fun handleSeverError(
+        exception : Exception,
+        request: HttpServletRequest
+    ): ErrorView {
         return ErrorView(
             status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
             error = HttpStatus.INTERNAL_SERVER_ERROR.name,
@@ -46,6 +49,4 @@ class ExceptionHandler {
             path = request.servletPath
         )
     }
-
-
 }
