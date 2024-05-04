@@ -1,7 +1,7 @@
 package com.alura.forum.repositories
 
-import com.alura.forum.models.Users
+import com.alura.forum.models.User
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface UserRepository: JpaRepository<Users, Long> {
+interface UserRepository: JpaRepository<User, Long> {
 }
