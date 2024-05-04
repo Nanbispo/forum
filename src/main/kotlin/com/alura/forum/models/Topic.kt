@@ -2,9 +2,12 @@ package com.alura.forum.models
 
 import jakarta.persistence.*
 import java.time.LocalDateTime
+import java.util.*
+import kotlin.collections.ArrayList
 
 @Entity
-data class Topic (
+@Table(name = "topic")
+data class Topic(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     var title: String,
@@ -13,7 +16,7 @@ data class Topic (
     @ManyToOne
     val course: Course,
     @ManyToOne
-    val author: Users,
+    val author: User,
     @Enumerated(value = EnumType.STRING)
     val status: TopicStatus = TopicStatus.NOT_ANSWERED,
     @OneToMany(mappedBy = "topic")

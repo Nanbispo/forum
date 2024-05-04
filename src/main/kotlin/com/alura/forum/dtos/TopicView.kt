@@ -5,7 +5,7 @@ import com.alura.forum.models.TopicStatus
 import java.time.LocalDateTime
 
 data class TopicView (
-    val id: Long?,
+    val id: Long? = null,
     val title: String,
     val message: String,
     val status: TopicStatus,
