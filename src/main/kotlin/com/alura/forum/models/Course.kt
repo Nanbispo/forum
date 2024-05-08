@@ -9,6 +9,6 @@ data class Course (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val title: String,
+    val name: String,
     val category: String
 )
