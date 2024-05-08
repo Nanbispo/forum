@@ -1,6 +1,6 @@
 create table course(
     id bigint not null auto_increment,
-    title varchar(50) not null,
+    name varchar(50) not null,
     category varchar(50) not null,
     primary key(id)
 );
