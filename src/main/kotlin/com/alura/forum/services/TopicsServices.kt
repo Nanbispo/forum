@@ -1,5 +1,6 @@
 package com.alura.forum.services
 
+import com.alura.forum.dtos.TopicByCategoryDto
 import com.alura.forum.dtos.TopicForm
 import com.alura.forum.dtos.TopicView
 import com.alura.forum.dtos.toUpdateTopicForm
@@ -58,5 +59,9 @@ class TopicsServices(
 
     fun delete(id: Long) {
         topicRepositoryImpl.deleteById(id)
+    }
+
+    fun report(): List<TopicByCategoryDto> {
+        return topicRepositoryImpl.report()
     }
 }

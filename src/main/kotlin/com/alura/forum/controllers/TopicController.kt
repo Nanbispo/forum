@@ -1,5 +1,6 @@
 package com.alura.forum.controllers
 
+import com.alura.forum.dtos.TopicByCategoryDto
 import com.alura.forum.dtos.TopicForm
 import com.alura.forum.dtos.TopicView
 import com.alura.forum.dtos.toUpdateTopicForm
@@ -57,5 +58,10 @@ class TopicController(private val service: TopicsServices) {
     @CacheEvict(value = ["topicos"], allEntries = true)
     fun delete(@PathVariable id: Long){
         service.delete(id)
+    }
+
+    @GetMapping("/relatorio")
+    fun report(): List<TopicByCategoryDto> {
+        return service.report()
     }
 }
