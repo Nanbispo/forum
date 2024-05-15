@@ -1,5 +1,7 @@
 package com.alura.forum.config
 
+
+import org.springframework.cglib.core.Customizer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
@@ -17,21 +19,40 @@ import org.springframework.security.web.SecurityFilterChain
 @EnableWebSecurity
 class SecurityConfiguration(
     private val userDetailsService: UserDetailsService
-)  {
+) {
+
 
     @Bean
-    fun filterChain(http: HttpSecurity): SecurityFilterChain? {
+    fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .csrf().disable()
-            .authorizeHttpRequests()
-            .requestMatchers("/topicos").permitAll()
-            .anyRequest().authenticated()
-            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            .and().formLogin().disable()
-            .httpBasic()
+            .csrf { it.disable() }
+            .authorizeHttpRequests {
+                it.requestMatchers("/topicos").permitAll()
+                it.anyRequest().authenticated()
+            }
+            .sessionManagement {
+                it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            }
+
         return http.build()
     }
 
+//    @Bean
+//    fun securityfilterChain(http: HttpSecurity): SecurityFilterChain? {
+//        http.invoke {
+//            csrf { disable() }
+//            authorizeRequests {
+//                authorize("/topicos", hasAuthority("LEITURA_ESCRITA"))
+//                authorize(anyRequest, authenticated)
+//            }
+//            sessionManagement {
+//                sessionCreationPolicy = SessionCreationPolicy.STATELESS
+//            }
+//            headers { frameOptions { disable() } }
+//            httpBasic { }
+//        }
+//        return http.build()
+//    }
 
 
     @Bean
@@ -39,9 +60,6 @@ class SecurityConfiguration(
         return BCryptPasswordEncoder()
     }
 
-//    fun configure(auth : AuthenticationManagerBuilder?){
-//        auth?.userDetailsService(userDetailsService)?.passwordEncoder(bCryptPasswordEncoder())
-//    }
 
     @Bean
     fun configure(auth: AuthenticationManagerBuilder?): DaoAuthenticationProvider {

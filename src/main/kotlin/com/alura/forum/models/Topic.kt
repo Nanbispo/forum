@@ -2,7 +2,6 @@ package com.alura.forum.models
 
 import jakarta.persistence.*
 import java.time.LocalDateTime
-import java.util.*
 import kotlin.collections.ArrayList
 
 @Entity
@@ -20,5 +19,5 @@ data class Topic(
     @Enumerated(value = EnumType.STRING)
     val status: TopicStatus = TopicStatus.NOT_ANSWERED,
     @OneToMany(mappedBy = "topic")
-    val answers: List<Answers> = ArrayList()
+    val answers: List<Answer> = ArrayList()
 )
