@@ -6,6 +6,10 @@
 
 ### Tecnológias
 - Kotlin (Linguagem de programção principal)
-- Spring Boot (Framework back-end)
+- Spring Boot / Spring Security (Framework back-end)
 - Maven (Gerenciador de depedencias)
 - PostMan (Testes manuais do API REST)
+- h2 (Banco de dados em memoria)
+- JWT (Geração de tokens)
+- Docker (Conteinerização do projeto)
+
