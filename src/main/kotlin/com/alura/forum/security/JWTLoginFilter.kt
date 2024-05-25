@@ -12,7 +12,7 @@ import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
-class JTWLoginFilter(
+class JWTLoginFilter(
     private val authManager: AuthenticationManager,
     private val jwtUtil: JWTUtil
 ) : UsernamePasswordAuthenticationFilter() {
