@@ -17,7 +17,6 @@ class JWTLoginFilter(
     private val jwtUtil: JWTUtil
 ) : UsernamePasswordAuthenticationFilter() {
 
-
     override fun attemptAuthentication(request: HttpServletRequest?, response: HttpServletResponse?): Authentication {
         val (username, password) = ObjectMapper().readValue(request?.inputStream, Credentials::class.java)
         val token = UsernamePasswordAuthenticationToken(username, password)
